@@ -7,5 +7,3 @@ def search_func(query,  advanced=True):
     for result in search_results:
         search_result_return.append(result)
     return search_result_return
-
-print(search_func("test"))
