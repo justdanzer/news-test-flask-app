@@ -2,3 +2,5 @@ Flask==1.1.4
 Jinja2==2.11.3
 markupsafe==2.0.1
 gunicorn
+googlesearch-python==1.1.0
+requests==2.25.1
