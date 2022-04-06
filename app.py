@@ -37,7 +37,8 @@ def search():
 
 @app.route('/map')
 def mymap():
-    return render_template('map.html', mymap=mymap)
+    map = GoogleMaps(app)
+    return render_template('map.html', mymap=map)
 
 def no_results_template(query):
     return render_template('simple_message.html', title='No results found',
