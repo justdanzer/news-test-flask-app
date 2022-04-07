@@ -44,10 +44,11 @@ def topstories():
 @app.route('/search',methods=['GET'])
 def search():
     query = request.args.get('query')
-    search_results = search_engine.search_func(query=f"{query} {city}")
+    newsapi = NewsApiClient(api_key='0d09928cab5c4623bd3a1de740dd2a67')
+    search_results = newsapi.get_top_headlines(q=query)
     if not search_results:
         return no_results_template(query)
-    return render_template('search_results.html', search_results=search_results, query=query)
+    return render_template('search_results.html', search_results=search_results['articles'], query=query)
 
 @app.route('/map')
 def mymap():
