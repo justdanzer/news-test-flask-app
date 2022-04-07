@@ -5,3 +5,4 @@ gunicorn
 googlesearch-python==1.1.0
 requests==2.25.1
 flask-googlemaps==0.4.1
+newsapi-python==0.2.6

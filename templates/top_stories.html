@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="container landing-page">
+    <section class="col-xs-12 col-md-12">
+
+        {% for article in search_results %}
+
+            <div class=flash>{{ message }}</div>
+            <article class="search-result row">
+                <div class="col-xs-12 col-sm-9 excerpet">
+
+                    <li class="w3-bar">
+                        <span onclick="this.parentElement.style.display='none'"
+                        class="w3-bar-item w3-button w3-xlarge w3-right">&times;</span>
+                        <img src="img_avatar2.png" class="w3-bar-item w3-circle" style="width:85px">
+                        <div class="w3-bar-item">
+                            <h3 class="article-title"><a href="{{ article.url }}"
+                                title="{{ article.title }}">{{ article.title }}</a>
+                            </h3>
+                            <p class="article-url">{{ article.url }}</p>
+                            <p>{{ article.description }}</p>
+                            <p>{{ article.urlToImage }}</p>
+                        </div>
+                      </li>
+
+                    <!-- <h3 class="article-title"><a href="{{ article.url }}"
+                                                 title="{{ article.title }}">{{ article.title }}</a>
+                    </h3>
+                    <p class="article-url">{{ article.url }}</p>
+                    <p>{{ article.description }}</p>
+                    <p>{{ article.urlToImage }}</p>
+
+                    {#                        <span class="plus"><a href="#" title="Lorem ipsum"><i#}
+                    {#                                class="glyphicon glyphicon-plus"></i></a></span>#}
+                </div>
+                <span class="clearfix borda"></span> -->
+            </article>
+
+        {% endfor %}
+
+    </section>
+</div>
+
+{% endblock %}

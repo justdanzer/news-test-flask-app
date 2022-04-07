@@ -5,12 +5,19 @@ import json
 from urllib.request import urlopen
 from flask_googlemaps import GoogleMaps
 from flask_googlemaps import Map
+from newsapi import NewsApiClient
+import const
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
     global city
+    global IP
+    global org
+    global city
+    global country
+    global region
     try:
         url = 'http://ipinfo.io/json'
         response = urlopen(url)
@@ -22,10 +29,18 @@ def index():
         country=data['country']
         region=data['region']
     except:
-        city = "Cambridge , Massachusetts News"
+        city = "Cambridge"
+        region = "Massachusetts"
+        country = "US"
 
-    return render_template('index.html', location=city)
+    return render_template('index.html', location=f"{city} {region} {country}")
 
+@app.route('/topstories')
+def topstories():
+    newsapi = NewsApiClient(api_key='0d09928cab5c4623bd3a1de740dd2a67')
+    search_results = newsapi.get_everything(q=f"News {city} {region} {country}",  page_size=10)
+
+    return render_template('top_stories.html', search_results=search_results['articles'])
 
 @app.route('/search',methods=['GET'])
 def search():
@@ -39,6 +54,8 @@ def search():
 def mymap():
     map = GoogleMaps(app)
     return render_template('map.html', mymap=map)
+
+
 
 def no_results_template(query):
     return render_template('simple_message.html', title='No results found',
