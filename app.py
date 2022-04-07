@@ -22,7 +22,7 @@ def index():
         url = 'http://ipinfo.io/json'
         response = urlopen(url)
         data = json.load(response)
-
+        print(data)
         IP=data['ip']
         org=data['org']
         city = data['city']
@@ -39,7 +39,6 @@ def index():
 def topstories():
     newsapi = NewsApiClient(api_key='0d09928cab5c4623bd3a1de740dd2a67')
     search_results = newsapi.get_everything(q=f"News {city} {region} {country}",  page_size=10)
-
     return render_template('top_stories.html', search_results=search_results['articles'])
 
 @app.route('/search',methods=['GET'])
